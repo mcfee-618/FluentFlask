@@ -5,7 +5,7 @@
 @file: hello.py
 @time: 2020/7/6 下午5:05
 """
-from flask import Flask
+from flask import Flask,url_for
 
 app = Flask(__name__)
 
@@ -19,3 +19,6 @@ def index():
 def add(tid):
     return str(tid)
 
+@app.route('/test1')
+def test_url():
+    return url_for("test_url",_external=True)

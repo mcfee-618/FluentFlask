@@ -29,6 +29,32 @@ Pipenv是Kenneth Reitz在2017年1月发布的Python依赖管理工具，现在�
     .flaskenv用来存储和Flask相关的公开环境变量，比如FLASK_APP；而.env用来
      存储包含敏感信息的环境变量，比如后面我们会用来配置Email服务器的账户名与密码。
     ```
+* 项目配置：在一个项目中，你会用到许多配置：Flask提供的配置，扩展提供的
+配置，还有程序特定的配置。和平时使用变量不同，这些配置变量都通
+过Flask对象的app.config属性作为统一的接口来设置和获取，它指向的
+Config类实际上是字典的子类，所以你可以像操作其他字典一样操作
+它。
+     ```
+    配置的名称必须是全大写形式，小写的变量将不会被读取
+     ```
+* URL：使用Flask提供的url_for（）函数获取URL，当路由中定义的
+URL规则被修改时，这个函数总会返回正确的URL。
+    ```
+    url_for（）函数生成的URL是相对URL（即内部URL），
+    即URL中的path部分，比如“/hello”，不包含根URL。相对URL只能在程
+    序内部使用。如果你想要生成供外部使用的绝对URL，可以在使用
+    url_for（）函数时，将_external参数设为True，这会生成完整的URL，
+    ```
+* 模板与静态文件：。默认情
+况下，模板文件存放在项目根目录中的templates文件夹中，静态文件存
+放在static文件夹下，这两个文件夹需要和包含程序实例的模块处于同一
+个目录下。
+
+* MVC架构：在MVC架构中，程序被分为三个组件：数据处理（Model）、用户界面（View）、交互
+逻辑（Controller）。粗略归类，如果想要使用Flask来编写一个MVC架构的程序，那么
+视图函数可以作为控制器（Controller），视图（View）则是使用Jinja2渲染的HTML模板，而模型（Model）可以使用其
+他库来实现。
+
 
 ## 相关链接
 * pipenv https://blog.csdn.net/qq_18598403/article/details/85108742
