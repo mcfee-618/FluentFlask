@@ -25,7 +25,7 @@ set_cookie（）方法支持多个参数来设置Cookie的选项，如下表所�
 
 ## SESSION
 
-* 基本概念：session指用户会话（user session），又称为对话，即服务器和客户端/浏览器之间或桌面程序和用户之间建立的交互活动。在Flask中，session对象用来加密Cookie。默认情况下，它会把数据存储在浏览器上一个名为session的cookie里。这个session对应的value是加密过的session字典。
+* 基本概念：session指用户会话（user session），又称为对话，即服务器和客户端/浏览器之间或桌面程序和用户之间建立的交互活动。在Flask中，session对象用来加密Cookie。默认情况下，它会把数据存储在浏览器上一个名为session的cookie里。这个session对应的value是加密过的session字典【session数据多，这个value就很长】。
 
 * 配置SECRET_KEY：flask的session是通过加密之后放到了cookie中。所以有加密就有密钥用于解密，所以，只要用到了flask的session模块就一定要配置“SECRET_KEY”这个全局宏。一般设置为24位的字符。session的值是加密处理cookie后的值。使用session对象存储的cookie，用户可以看到加密后的值，但是不能修改。因为session中的内容使用密钥进行签名加密，一旦数据被篡改，签名的值也会变化，这样在读取时，就会验证失败，对应的session值也会随之失效。
 
