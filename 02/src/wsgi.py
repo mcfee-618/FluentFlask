@@ -5,7 +5,7 @@
 @file: hello.py
 @time: 2020/7/7 下午6:34
 """
-from flask import Flask, request
+from flask import Flask, request ,redirect ,url_for,abort,make_response ,jsonify
 app = Flask(__name__)
 @app.route('/hello')
 def hello():
@@ -21,5 +21,23 @@ def hello1(name):
 def before():
     print("before")
 
+@app.route('/redirect',methods=['get'])
+def hello_redirect():
+    return redirect(url_for('hello'))
+
+@app.route('/error')
+def error():
+    abort(404)
+
+
+@app.route('/foo')
+def foo():
+    response = make_response('Hello, World!')
+    response.mimetype = 'text/plain'
+    return response
+
+@app.route('/foo1')
+def foo1():
+    return jsonify(name='Grey Li', gender='male')
 
 print(app.url_map)
